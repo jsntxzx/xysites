@@ -15,3 +15,4 @@ NEWSPIDER_MODULE = 'xysites.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'xysites (+http://www.yourdomain.com)'
+ITEM_PIPELINES = {'xysites.pipelines.XysitesPipeline':1,}

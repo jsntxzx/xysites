@@ -16,18 +16,27 @@ class NinemouthSpider(Spider):
                   u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
                   ]
     base_url = u'http://34yu.com'
+    imgbase_url = u'http://pictureimg.info/imgdat/'
 
     def parse(self, response):
         nextpage_url = response.xpath('//div[@class="wp-pagenavi"]/a[@id="nextpagelink"]/@href').extract()
         content_urls = response.xpath('//div[@class="project-desc"]/p/b/a/@href').extract()
         if len(nextpage_url) == 1 :
-        	next_link = base_url + nextpage_url[0]
-        	yield Request(url=next_link, callback=self.parse)
+            next_link = self.base_url + nextpage_url[0]
+#           print next_link
+            yield Request(url=next_link, callback=self.parse)
 
         for content_url in content_urls:
-        	content_link = base_url + content_url 
-        	yield Request(url=content_link, callback=self.parse_content)
+            content_link = self.base_url + content_url 
+#            print content_url
+            yield Request(url=content_link, callback=self.parse_content)
 
     def parse_content(self , response):
-
-
+        item = XysitesItem()
+        item['folderName'] = response.xpath('//div[@class="title"]/text()').extract()[0]
+        item['imageUrls'] = []
+        mystring = response.xpath('//div[@class="singleinfo"]/text()').extract()[0].strip('\r\n').split(',')
+        prefix = mystring[0]
+        for substr in mystring[1:]:
+            item['imageUrls'].append(self.imgbase_url + prefix + '/' + substr)
+        return item
