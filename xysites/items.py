@@ -12,4 +12,4 @@ class XysitesItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     folderName = scrapy.Field()
-    imageUrls = scrapy.Field()
+    imageUrl = scrapy.Field()

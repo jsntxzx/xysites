@@ -30,11 +30,12 @@ class NinemouthSpider(Spider):
             yield Request(url=content_link, callback=self.parse_content)
 
     def parse_content(self , response):
-        item = XysitesItem()
-        item['folderName'] = response.xpath('//div[@class="title"]/text()').extract()[0]
-        item['imageUrls'] = []
+        
+        folder = response.xpath('//div[@class="title"]/text()').extract()[0]
         mystring = response.xpath('//div[@class="singleinfo"]/text()').extract()[0].strip('\r\n').split(',')
         prefix = mystring[0]
         for substr in mystring[1:]:
-            item['imageUrls'].append(self.imgbase_url + prefix + '/' + substr)
-        return item
+            item = XysitesItem()
+            item['folderName'] = folder
+            item['imageUrl'] = self.imgbase_url + prefix + '/' + substr
+            return item
