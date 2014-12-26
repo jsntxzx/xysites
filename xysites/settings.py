@@ -13,6 +13,13 @@ BOT_NAME = 'xysites'
 SPIDER_MODULES = ['xysites.spiders']
 NEWSPIDER_MODULE = 'xysites.spiders'
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'xysites (+http://www.yourdomain.com)'
 ITEM_PIPELINES = {'xysites.pipelines.XysitesPipeline':1,}
+
+DOWNLOADER_MIDDLEWARES = {
+       'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
+       'xysites.rotate_useragent.RotateUserAgentMiddleware': 400,
+	   }
+
+
+DOWNLOAD_DELAY = 0.25
+COOKIES_ENABLED = False

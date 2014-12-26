@@ -1,0 +1,1 @@
+scrapy crawl xysites -s JOBDIR=job

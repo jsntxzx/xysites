@@ -10,10 +10,10 @@ class NinemouthSpider(Spider):
     name = "xysites"
     allowed_domains = ["34yu.com"]
     start_urls = [u'http://34yu.com/tupian/xiyangnvsaomei/', 
-                  u'http://34yu.com/tupian/dongfangnvjizhongying/', 
-                  u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
-                  u'http://34yu.com/tupian/katongtietuqu/',
-                  u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
+#                  u'http://34yu.com/tupian/dongfangnvjizhongying/', 
+#                  u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
+#                  u'http://34yu.com/tupian/katongtietuqu/',
+#                  u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
                   ]
     base_url = u'http://34yu.com'
     imgbase_url = u'http://pictureimg.info/imgdat/'
@@ -23,12 +23,10 @@ class NinemouthSpider(Spider):
         content_urls = response.xpath('//div[@class="project-desc"]/p/b/a/@href').extract()
         if len(nextpage_url) == 1 :
             next_link = self.base_url + nextpage_url[0]
-#           print next_link
             yield Request(url=next_link, callback=self.parse)
 
         for content_url in content_urls:
             content_link = self.base_url + content_url 
-#            print content_url
             yield Request(url=content_link, callback=self.parse_content)
 
     def parse_content(self , response):
