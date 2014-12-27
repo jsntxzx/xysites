@@ -9,9 +9,10 @@ from xysites.items import XysitesItem
 class NinemouthSpider(Spider):
     name = "xysites"
     allowed_domains = ["34yu.com"]
-    start_urls = [u'http://34yu.com/tupian/xiyangnvsaomei/', 
+    start_urls = [
+#                  u'http://34yu.com/tupian/xiyangnvsaomei/', 
 #                  u'http://34yu.com/tupian/dongfangnvjizhongying/', 
-#                  u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
+                   u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
 #                  u'http://34yu.com/tupian/katongtietuqu/',
 #                  u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
                   ]
@@ -38,4 +39,4 @@ class NinemouthSpider(Spider):
             item = XysitesItem()
             item['folderName'] = folder
             item['imageUrl'] = self.imgbase_url + prefix + '/' + substr
-            return item
+            yield item

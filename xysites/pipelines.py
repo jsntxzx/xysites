@@ -12,12 +12,11 @@ class XysitesPipeline(object):
     def process_item(self, item, spider):
         base = 'images/'
         category = item['folderName']
-        urls = item['imageUrls']
+        url = item['imageUrl']
         if not os.path.exists(base + category) :
             os.makedirs(base + category)
-        for url in urls:
-            name = base+category+'/'+ url.split('/')[-1]
-            self.download(url , name)
+        name = base+category+'/'+ url.split('/')[-1]
+        self.download(url , name)
         return item
 
     def download(self, url, name):
