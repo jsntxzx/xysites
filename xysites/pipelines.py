@@ -16,7 +16,8 @@ class XysitesPipeline(object):
         if not os.path.exists(base + category) :
             os.makedirs(base + category)
         name = base+category+'/'+ url.split('/')[-1]
-        self.download(url , name)
+        if not os.path.exists(name) :
+            self.download(url , name)
         return item
 
     def download(self, url, name):
