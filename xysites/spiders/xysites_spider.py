@@ -6,15 +6,15 @@ from scrapy.spider import Spider
 from scrapy.http import Request
 from xysites.items import XysitesItem
 
-class NinemouthSpider(Spider):
+class XysitesSpider(Spider):
     name = "xysites"
     allowed_domains = ["34yu.com"]
     start_urls = [
 #                  u'http://34yu.com/tupian/xiyangnvsaomei/', 
 #                  u'http://34yu.com/tupian/dongfangnvjizhongying/', 
-                   u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
+#                  u'http://34yu.com/tupian/wangyouzipaitietuqu/' ,
 #                  u'http://34yu.com/tupian/katongtietuqu/',
-#                  u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
+                   u'http://34yu.com/tupian/gaogenmeizusiwazhuanqu/',
                   ]
     base_url = u'http://34yu.com'
     imgbase_url = u'http://pictureimg.info/imgdat/'
@@ -30,8 +30,7 @@ class NinemouthSpider(Spider):
             content_link = self.base_url + content_url 
             yield Request(url=content_link, callback=self.parse_content)
 
-    def parse_content(self , response):
-        
+    def parse_content(self , response):        
         folder = response.xpath('//div[@class="title"]/text()').extract()[0]
         mystring = response.xpath('//div[@class="singleinfo"]/text()').extract()[0].strip('\r\n').split(',')
         prefix = mystring[0]
