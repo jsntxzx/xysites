@@ -13,7 +13,9 @@ BOT_NAME = 'xysites'
 SPIDER_MODULES = ['xysites.spiders']
 NEWSPIDER_MODULE = 'xysites.spiders'
 
-ITEM_PIPELINES = {'xysites.pipelines.XysitesPipeline':1,}
+ITEM_PIPELINES = {'xysites.pipelines.XysitesPipeline':1,
+#				  'redis.pipelines.RedisPipeline':2,
+				 }
 
 DOWNLOADER_MIDDLEWARES = {
        'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
@@ -24,3 +26,7 @@ DOWNLOADER_MIDDLEWARES = {
 DOWNLOAD_DELAY = 0.25
 HTTPCACHE_ENABLED = True
 #COOKIES_ENABLED = False
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
+SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"

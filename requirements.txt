@@ -1,2 +1,4 @@
 scrapy==0.24.4
 requests==2.5.1
+service_identity=14.0.0
+scrapy_redis==0.5.2
