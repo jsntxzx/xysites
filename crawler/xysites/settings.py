@@ -30,5 +30,4 @@ HTTPCACHE_ENABLED = True
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 SCHEDULER_PERSIST = True
 SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
-
 REDIS_URL = 'redis://192.168.241.132:6379/0'
