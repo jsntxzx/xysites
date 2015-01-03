@@ -10,7 +10,7 @@ import requests
 
 class XysitesPipeline(object):
     def process_item(self, item, spider):
-        base = 'images/'
+        base = '../images/'
         category = item['folderName']
         url = item['imageUrl']
         if not os.path.exists(base + category) :
