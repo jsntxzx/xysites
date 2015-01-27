@@ -7,5 +7,5 @@ sed  -i "/^bind/{s/$/ $mip/}"  /etc/redis/redis.conf
 var=$(printf "REDIS_URL = 'redis://%s:6379/0'" $mip)
 echo $var >> ../crawler/xysites/settings.py
 redis-server /etc/redis/redis.conf
-apt-get install python-pip redis-server
+apt-get install python-pip redis-server libxml2-dev libxslt1-dev
 pip install -r requirements.txt
